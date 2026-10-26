@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isagani — BSIS Student & Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Isagani, a 3rd year BSIS student building Android apps and websites."
+    />
+    <style>
+      /* ============ LIQUID GLASS PORTFOLIO ============ */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --ink: #16283f;
+        --ink-soft: #4a6076;
+        --glass: rgba(255, 255, 255, 0.55);
+        --glass-strong: rgba(255, 255, 255, 0.68);
+        --glass-border: rgba(255, 255, 255, 0.75);
+        --shadow: 0 18px 45px rgba(70, 110, 160, 0.18);
+        --radius: 26px;
+        --blue: #3b82f6;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          Roboto,
+          sans-serif;
+        color: var(--ink);
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #dfeefc 0%,
+          #f4fafe 45%,
+          #fdf3ec 100%
+        );
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* soft colorful orbs behind the glass */
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.55;
+      }
+      .orb-1 {
+        width: 420px;
+        height: 420px;
+        background: #a8c8ff;
+        top: -120px;
+        left: -100px;
+      }
+      .orb-2 {
+        width: 380px;
+        height: 380px;
+        background: #ffd9c2;
+        bottom: -140px;
+        right: -80px;
+      }
+      .orb-3 {
+        width: 260px;
+        height: 260px;
+        background: #c9f0dd;
+        top: 42%;
+        left: 58%;
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        max-width: 1020px;
+        margin: 0 auto;
+        padding: 22px 20px 50px;
+      }
+
+      /* ============ GLASS NAV ============ */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--glass);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        backdrop-filter: blur(20px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+        padding: 10px 12px 10px 20px;
+        position: sticky;
+        top: 16px;
+        z-index: 50;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 800;
+        letter-spacing: 2.5px;
+        font-size: 15px;
+      }
+      .logo-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 210deg,
+          #7cc4ff,
+          #c9b8ff,
+          #ffb8d9,
+          #a8e6c9,
+          #7cc4ff
+        );
+        box-shadow:
+          inset 0 0 6px rgba(255, 255, 255, 0.9),
+          0 2px 6px rgba(90, 130, 190, 0.35);
+      }
+      .nav-links {
+        display: flex;
+        gap: 6px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        font-size: 14.5px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 999px;
+        transition: 0.2s;
+      }
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.75);
+        color: var(--ink);
+      }
+      .burger {
+        display: none;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--glass-border);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+        color: var(--ink);
+      }
+
+      /* ============ GLASS PANELS ============ */
+      .glass {
+        background: var(--glass);
+        -webkit-backdrop-filter: blur(22px) saturate(160%);
+        backdrop-filter: blur(22px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        margin-top: 26px;
+        padding: 42px 44px;
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .hero-photo {
+        width: 168px;
+        height: 168px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 4px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 12px 30px rgba(70, 110, 160, 0.25);
+      }
+      .hero h1 {
+        font-size: 44px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .hero .role {
+        color: var(--ink-soft);
+        font-size: 18.5px;
+        margin-top: 6px;
+        font-weight: 500;
+      }
+      .hero .bio {
+        color: var(--ink-soft);
+        font-size: 15.5px;
+        line-height: 1.55;
+        margin-top: 14px;
+        max-width: 520px;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 22px;
+        text-decoration: none;
+        color: #1d5fd1;
+        font-weight: 700;
+        font-size: 15.5px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(219, 236, 255, 0.75)
+        );
+        border: 1px solid var(--glass-border);
+        border-radius: 999px;
+        padding: 12px 26px;
+        box-shadow:
+          0 8px 20px rgba(70, 110, 160, 0.18),
+          inset 0 1px 0 #fff;
+        transition: 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 12px 26px rgba(70, 110, 160, 0.25),
+          inset 0 1px 0 #fff;
+      }
+
+      h2.section-title {
+        text-align: center;
+        font-size: 21px;
+        font-weight: 800;
+        margin: 44px 0 20px;
+      }
+
+      /* ============ PROJECTS ============ */
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px 22px;
+        border-radius: 22px;
+        text-decoration: none;
+        color: var(--ink);
+        background: var(--glass-strong);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 10px 28px rgba(70, 110, 160, 0.14);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 36px rgba(70, 110, 160, 0.22);
+      }
+      .tile {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.65),
+          0 6px 14px rgba(70, 110, 160, 0.2);
+      }
+      .t-blue {
+        background: linear-gradient(145deg, #6aa8ff, #3b82f6);
+        color: #fff;
+      }
+      .t-teal {
+        background: linear-gradient(145deg, #3fd4c0, #14b8a6);
+        color: #fff;
+      }
+      .t-purple {
+        background: linear-gradient(145deg, #b79aff, #8b5cf6);
+        color: #fff;
+      }
+      .t-green {
+        background: linear-gradient(145deg, #5fd68a, #22b573);
+        color: #fff;
+      }
+      .t-orange {
+        background: linear-gradient(145deg, #ffb066, #fb923c);
+        color: #fff;
+      }
+      .t-pink {
+        background: linear-gradient(145deg, #ff9ecf, #f472b6);
+        color: #fff;
+      }
+      .card h3 {
+        font-size: 17.5px;
+        font-weight: 700;
+      }
+      .card p {
+        color: var(--ink-soft);
+        font-size: 14px;
+        margin-top: 3px;
+        line-height: 1.45;
+      }
+      .card .tech {
+        color: #7d93a9;
+        font-size: 12.5px;
+        font-weight: 600;
+        margin-top: 5px;
+        letter-spacing: 0.2px;
+      }
+
+      /* ============ SKILLS ============ */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        padding: 6px 4px;
+      }
+      .pill {
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-size: 14.5px;
+        font-weight: 700;
+        border: 1px solid var(--glass-border);
+        box-shadow:
+          0 6px 16px rgba(70, 110, 160, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+      .p-blue {
+        background: rgba(191, 219, 254, 0.75);
+        color: #1e40af;
+      }
+      .p-indigo {
+        background: rgba(199, 210, 254, 0.75);
+        color: #3730a3;
+      }
+      .p-teal {
+        background: rgba(153, 246, 228, 0.75);
+        color: #115e59;
+      }
+      .p-yellow {
+        background: rgba(254, 240, 138, 0.8);
+        color: #854d0e;
+      }
+      .p-green {
+        background: rgba(187, 247, 208, 0.75);
+        color: #166534;
+      }
+      .p-orange {
+        background: rgba(254, 215, 170, 0.8);
+        color: #9a3412;
+      }
+      .p-pink {
+        background: rgba(251, 207, 232, 0.8);
+        color: #9d174d;
+      }
+
+      /* ============ CONTACT ============ */
+      .contact {
+        margin-top: 8px;
+        padding: 34px 30px;
+        text-align: center;
+      }
+      .contact p {
+        color: var(--ink-soft);
+        font-size: 15.5px;
+        line-height: 1.55;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .contact-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 22px;
+      }
+      .contact-row a {
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid var(--glass-border);
+        padding: 12px 24px;
+        border-radius: 999px;
+        transition: 0.2s;
+        box-shadow: 0 6px 16px rgba(70, 110, 160, 0.12);
+      }
+      .contact-row a:hover {
+        transform: translateY(-2px);
+        background: #fff;
+      }
+
+      footer {
+        text-align: center;
+        color: #8aa0b5;
+        font-size: 13px;
+        margin-top: 44px;
+      }
+
+      /* reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ============ RESPONSIVE (mobile view, like the mockup) ============ */
+      @media (max-width: 760px) {
+        .wrap {
+          padding: 14px 14px 40px;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 64px;
+          right: 0;
+          left: 0;
+          flex-direction: column;
+          gap: 4px;
+          padding: 12px;
+          background: var(--glass-strong);
+          border: 1px solid var(--glass-border);
+          border-radius: 22px;
+          box-shadow: var(--shadow);
+          -webkit-backdrop-filter: blur(22px) saturate(160%);
+          backdrop-filter: blur(22px) saturate(160%);
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 12px 16px;
+        }
+        nav {
+          position: relative;
+          top: 0;
+        }
+        .burger {
+          display: block;
+        }
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 32px 22px;
+          gap: 20px;
+          margin-top: 18px;
+        }
+        .hero-photo {
+          width: 132px;
+          height: 132px;
+        }
+        .hero h1 {
+          font-size: 34px;
+        }
+        .hero .bio {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .projects {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="wrap">
+      <!-- ===== NAV ===== -->
+      <nav>
+        <div class="logo"><span class="logo-dot"></span>ISAGANI</div>
+        <div class="nav-links" id="navLinks">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="burger" id="burger" aria-label="Menu">☰</button>
+      </nav>
+
+      <!-- ===== HERO ===== -->
+      <header class="hero glass reveal">
+        <img
+          class="hero-photo"
+          src="data:image/jpeg;base64,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"
+          alt="Photo of Isagani"
+        />
+        <div>
+          <h1>Isagani</h1>
+          <p class="role">BSIS Student &amp; Developer</p>
+          <p class="bio">
+            3rd year BSIS student who builds Android apps and websites that help
+            people learn and small businesses grow — from code editors and study
+            apps to a live shop website for a real client.
+          </p>
+          <a class="btn" href="#projects">View Projects →</a>
+        </div>
+      </header>
+
+      <!-- ===== PROJECTS ===== -->
+      <h2 class="section-title" id="projects">Selected Projects</h2>
+      <section class="projects">
+        <a
+          class="card reveal"
+          href="https://bosscode-isaganibutaya1-4593.vercel.app/"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="tile t-blue">&lt;/&gt;</div>
+          <div>
+            <h3>BossCode</h3>
+            <p>
+              A mobile code editor for learning and writing C++, HTML, CSS &amp;
+              JS — with an offline C++ compiler built in.
+            </p>
+            <div class="tech">HTML • CSS • JS • Android</div>
+          </div>
+        </a>
+        <a class="card reveal" href="#projects">
+          <div class="tile t-teal">📄</div>
+          <div>
+            <h3>DocLite</h3>
+            <p>
+              A lightweight, free Android office app for viewing PDFs and
+              editing documents with rich formatting and images.
+            </p>
+            <div class="tech">Kotlin • Android</div>
+          </div>
+        </a>
+        <a class="card reveal" href="#projects">
+          <div class="tile t-purple">🌐</div>
+          <div>
+            <h3>WebQuest</h3>
+            <p>
+              A tutorial app for learning HTML, CSS &amp; JavaScript — lessons,
+              quizzes, badges, and a beginner-friendly JS dictionary.
+            </p>
+            <div class="tech">HTML • CSS • JS</div>
+          </div>
+        </a>
+        <a class="card reveal" href="#projects">
+          <div class="tile t-green">🎓</div>
+          <div>
+            <h3>CppQuest</h3>
+            <p>
+              A C++ tutorial app with 11 lesson modules, quizzes, XP levels and
+              achievement badges — progress saved on-device.
+            </p>
+            <div class="tech">C++ • HTML • JS</div>
+          </div>
+        </a>
+        <a class="card reveal" href="#projects">
+          <div class="tile t-orange">💬</div>
+          <div>
+            <h3>BossChat</h3>
+            <p>
+              An offline tutor chatbot that answers HTML, CSS &amp; JS questions
+              and checks your code — no internet needed.
+            </p>
+            <div class="tech">HTML • CSS • JS</div>
+          </div>
+        </a>
+        <a
+          class="card reveal"
+          href="https://honey-shop-isaganibutaya1-4593.vercel.app/"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="tile t-pink">📱</div>
+          <div>
+            <h3>Honey Shop</h3>
+            <p>
+              A live one-page shop website for a used-cellphone business, with
+              an admin panel the owner manages herself.
+            </p>
+            <div class="tech">HTML • Firebase • Client Work</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- ===== SKILLS ===== -->
+      <h2 class="section-title" id="skills">Skills</h2>
+      <section class="skills reveal">
+        <span class="pill p-blue">C++</span>
+        <span class="pill p-orange">HTML</span>
+        <span class="pill p-indigo">CSS</span>
+        <span class="pill p-yellow">JavaScript</span>
+        <span class="pill p-green">Kotlin • Android</span>
+        <span class="pill p-teal">Firebase</span>
+        <span class="pill p-pink">UI Design</span>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <h2 class="section-title" id="contact">Contact</h2>
+      <section class="contact glass reveal">
+        <p>
+          Need a simple website for your business, or an app idea you want
+          built? Send me a message — I build clean, mobile-first sites and apps
+          at student-friendly rates.
+        </p>
+        <div class="contact-row">
+          <!-- TODO: replace the # below with your real links -->
+          <a
+            href="https://www.facebook.com/m.isaganibutaya"
+            target="_blank"
+            rel="noopener"
+            >📘 Facebook</a
+          >
+          <a href="@m.isaganibutaya" target="_blank" rel="noopener"
+            >💬 Messenger</a
+          >
+          <a href="mailto:isaganibutaya1@gmail.com">✉️ Email</a>
+        </div>
+      </section>
+
+      <footer>© 2026 Isagani — Built with HTML, CSS &amp; JavaScript</footer>
+    </div>
+
+    <script>
+      // mobile menu
+      var burger = document.getElementById("burger");
+      var navLinks = document.getElementById("navLinks");
+      burger.addEventListener("click", function () {
+        navLinks.classList.toggle("open");
+      });
+      navLinks.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") navLinks.classList.remove("open");
+      });
+
+      // reveal on scroll (with fallback: if IntersectionObserver is unavailable, show everything)
+      var revealEls = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add("show");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        revealEls.forEach(function (el) {
+          io.observe(el);
+        });
+      } else {
+        revealEls.forEach(function (el) {
+          el.classList.add("show");
+        });
+      }
+    </script>
+  </body>
+</html>
